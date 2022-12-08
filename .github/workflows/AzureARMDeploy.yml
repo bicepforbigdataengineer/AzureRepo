@@ -1,10 +1,21 @@
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
-on: [push]
-
 name: AzureARMDeploy
 
+
+on: [push]
+# on:
+#   puch:
+#     branches: [ master ]
+#   pull_request:
+#     branches: [ master ]
+
+
 jobs:
+  # build:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: test
 
   deploy:
     runs-on: ubuntu-latest
@@ -23,7 +34,7 @@ jobs:
       with:
         inlineScript: |
           az deployment group create \
-            --name StorageAccountDeployment \
-            --resource-group savdevgithubdeploy \
+            --name StorageAccDeployment \
+            --resource-group rg-action \
             --template-file armtemplates/storageaccount.json \
             --parameters storageAccountType=Standard_GRS
