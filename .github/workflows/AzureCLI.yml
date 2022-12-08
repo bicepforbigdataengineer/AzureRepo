@@ -4,17 +4,27 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@main
-    - name: Azure Login
+    - name: Login to Azure
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Checkout source code
+      uses: actions/checkout@v2    
+    # - uses: actions/checkout@main
+
+    # - name: Azure Login
+    #   uses: azure/login@v1
+    #   with:
+    #     creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+
     - name: Deploy
       uses: azure/CLI@v1
       with:
         azcliversion: 2.27.1
         inlineScript: |
-          az login
+          # az login
           # az group create --name rg-action --location ${{ secrets.LOCATION }}
           az deployment group create --name BicepDeployment --resource-group rg-action --template-file biceptemp/main.bicep
           # echo "BLOB_URL=$(az deployment group show -g rg-action -n BicepDeployment --query properties.outputs.blobURL.value -o tsv)" >> $GITHUB_ENV
