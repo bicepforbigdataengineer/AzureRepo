@@ -22,13 +22,20 @@ jobs:
     - name: Deploy
       uses: azure/CLI@v1
       with:
-        azcliversion: 2.27.1
+        # azcliversion: 2.27.1
         inlineScript: |
-          az login
-          # az group create --name rg-action --location ${{ secrets.LOCATION }}
-          az deployment group create --name BicepDeployment --resource-group rg-action --template-file biceptemp/main.bicep
-          # echo "BLOB_URL=$(az deployment group show -g rg-action -n BicepDeployment --query properties.outputs.blobURL.value -o tsv)" >> $GITHUB_ENV
-        creds: ${{ secrets.AZURE_CREDENTIALS }}          
+          az deployment group create \
+            --name bicepDeployment \
+            --resource-group rg-action \
+            --template-file biceptemp/main.bicep 
+            # \
+            # --parameters storageAccountType=Standard_GRS        
+        # inlineScript: |
+        #   az login
+        #   # az group create --name rg-action --location ${{ secrets.LOCATION }}
+        #   az deployment group create --name BicepDeployment --resource-group rg-action --template-file biceptemp/main.bicep
+        #   # echo "BLOB_URL=$(az deployment group show -g rg-action -n BicepDeployment --query properties.outputs.blobURL.value -o tsv)" >> $GITHUB_ENV
+        # creds: ${{ secrets.AZURE_CREDENTIALS }}          
           
     # - name: print env variable
     #   run: echo "${{ env.BLOB_URL }}"
