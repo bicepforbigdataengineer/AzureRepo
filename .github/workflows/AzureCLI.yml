@@ -1,5 +1,5 @@
 on: [push]
-name: Deploy Bicep template
+name: Deploy Bicep IaC
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
