@@ -28,7 +28,8 @@ jobs:
     - name: Run Azure PowerShell script
       uses: azure/powershell@v1
       with:
-        azPSVersion: '3.1.0'
+        # azPSVersion: '3.1.0'
         inlineScript: |
-          az login
-          Get-AzVM -ResourceGroupName "rg-action"
+          Set-AzContext ad54c4fb-f585-4033-9e5a-b119d74480b0
+          # az login
+          Get-AzVM -ResourceGroupName rg-action
