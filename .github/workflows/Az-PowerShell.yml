@@ -31,8 +31,5 @@ jobs:
         azPSVersion: '3.1.0'
         inlineScript: |
           Connect-AzAccount -Tenant ${{ secrets.tenantId }} -SubscriptionId ${{ secrets.subscriptionId }}
-
-
-
           # az login
           Get-AzResource -ResourceGroupName rg-action
