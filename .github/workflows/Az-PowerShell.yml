@@ -31,5 +31,6 @@ jobs:
         azPSVersion: '3.1.0'
         inlineScript: |
           Set-AzContext ad54c4fb-f585-4033-9e5a-b119d74480b0
+          Connect-AzAccount
           # az login
           Get-AzResource -ResourceGroupName rg-action
